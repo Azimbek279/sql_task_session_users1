@@ -1013,3 +1013,24 @@ insert into users (id, first_name, last_name, gender, working_year, age, Country
 insert into users (id, first_name, last_name, gender, working_year, age, Country, Title, Salary, login, description) values (998, 'Dorise', 'Hollyland', 'Female', '3/21/2005', 59, 'Nigeria', 'Ms', 62, 'dhollylandrp@nbcnews.com', 'Displaced fracture of lateral malleolus of left fibula, initial encounter for closed fracture');
 insert into users (id, first_name, last_name, gender, working_year, age, Country, Title, Salary, login, description) values (999, 'Hildegaard', 'Pretsell', 'Female', '2/7/2009', 87, 'China', 'Ms', 27, 'hpretsellrq@state.tx.us', 'Other fracture of third lumbar vertebra, subsequent encounter for fracture with delayed healing');
 insert into users (id, first_name, last_name, gender, working_year, age, Country, Title, Salary, login, description) values (1000, 'Jamill', 'Compston', 'Male', '3/30/1997', 17, 'China', 'Mr', 35, 'jcompstonrr@blinklist.com', 'Other complicated headache syndrome');
+
+-- Выберите из таблицы users записи с id равным 1, 2, 3, 5, 14.
+select * from users where id in(1,2,3,5,14);
+-- Выберите из таблицы users записи с login равным 'google.com', 'facebook.com', 'gmail.com'.
+select * from users where login in('google.com','facebook.com','gmail.com');
+-- Выберите из таблицы users записи с id равным 1, 2, 3, 7, 9, и логином, равным 'user', 'admin', 'house' и зарплатой больше 3500.
+select * from users where id in(1,2,3,7,9) and login = 'user' and Salary > 3500;
+-- Выберите из таблицы users записи c id от 3 до 10 и зарплатой от 3000 до 5000.
+select * from users where id in(3,4,5,6,7,8,9,10) and Salary between 3000 and 5000;
+-- Выберите из таблицы users все записи так, чтобы вместо id было userId, вместо login – userLogin, вместо salary - userSalary.
+select id as userId,Login as userLogin,Salary as userSalary from users;
+-- При выборке из таблицы users создайте новое поле res, в котором будет число 3
+alter table users add  column res int;
+-- При выборке из таблицы users создайте новое поле res, в котором будут лежать одновременно зарплата и возраст
+select concat(salary,'  ',age) as res  from users;
+-- При выборке из таблицы users создайте новое поле res, в котором будут лежать одновременно зарплата и возраст , а после возраста будут идти три знака '!'.
+select concat(salary,' ', age,'!!!') as res from users;
+-- При выборке из таблицы users создайте новое поле res, в котором будут лежать одновременно зарплата и возраст через дефис.
+select concat(salary,'-', age) as res from users;
+-- При выборке из таблицы users получите первые 5 символов логина и добавьте троеточие.
+select concat("right"(login,5),'...' )from users;
